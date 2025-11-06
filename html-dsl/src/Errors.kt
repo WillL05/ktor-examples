@@ -5,16 +5,22 @@ import io.ktor.server.html.respondHtml
 import io.ktor.server.plugins.statuspages.StatusPages
 import kotlinx.html.*
 
-fun Application.configureErrors() {
+fun Application.configureErrorHandling() {
     install(StatusPages) {
         exception<Throwable> { call, cause ->
             call.respondHtml(HttpStatusCode.InternalServerError) {
                 head {
+                    meta(charset = "utf-8")
+                    meta(name = "viewport", content = "width=device-width, initial-scale=1")
+                    meta(name = "color-scheme", content = "light dark")
+                    link(rel = "stylesheet", href = "https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css")
                     title { +"Error: Die Roller" }
                 }
                 body {
-                    h1 { +"500 Internal Server Error" }
-                    p { +"$cause" }
+                    main(classes = "container") {
+                        h1 { +"500 Internal Server Error" }
+                        p { +"${cause.message}" }
+                    }
                 }
             }
         }
