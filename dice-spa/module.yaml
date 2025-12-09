@@ -1,0 +1,14 @@
+product: jvm/app
+
+settings:
+  ktor: enabled
+  jvm:
+    mainClass: ApplicationKt
+
+dependencies:
+  - $ktor.server.core
+  - $ktor.server.statusPages
+  - $ktor.server.netty
+  - $ktor.server.pebble
+  - $ktor.server.configYaml
+  - ch.qos.logback:logback-classic:1.5.18

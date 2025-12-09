@@ -1,0 +1,6 @@
+<header><h2>Last Roll: {{ dice }}d{{ sides }}</h2></header>
+
+<p>You rolled:
+  <strong>{% for result in results %}{% if loop.index > 0 %}, {% endif %}{{ result }}{% endfor %}</strong></p>
+
+<p>For a total of <strong>{{ total }}</strong></p>
