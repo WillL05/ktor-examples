@@ -23,29 +23,29 @@ private suspend fun ApplicationCall.displayForm() {
             h1 { +"Dice Roller" }
             form(action = "/roll", method = FormMethod.get) {
                 label {
-                    htmlFor = "dice"
+                    htmlFor = "numDice"
                     +"Number of dice"
                 }
                 numberInput {
-                    id = "dice"
-                    name = "dice"
+                    id = "numDice"
+                    name = "num"
                     min = "1"
                     max = "10"
                     value = "3"
                     required = true
                 }
                 label {
-                    htmlFor = "sides"
-                    +"Number of sides"
+                    htmlFor = "dieName"
+                    +"Die to roll"
                 }
                 select {
-                    id = "sides"
-                    name = "sides"
+                    id = "dieName"
+                    name = "die"
                     required = true
-                    sidesOptions.forEach { value ->
+                    dieOptions.forEach { value ->
                         option {
-                            if (value == 6) { selected = true }
-                            +"$value"
+                            if (value == "d6") { selected = true }
+                            +value
                         }
                     }
                 }
@@ -56,15 +56,15 @@ private suspend fun ApplicationCall.displayForm() {
 }
 
 private suspend fun ApplicationCall.handleDiceRoll() {
-    val (dice, sides) = queryParameters(request)
-    val results = diceRoll(dice, sides)
+    val (num, die) = extractParameters(request)
+    val results = diceRoll(num, die)
 
     respondHtmlTemplate(LayoutTemplate()) {
         titleText { +"Dice Results" }
         content {
             h1 { +"Dice Results" }
 
-            p { +"You rolled ${dice}d$sides" }
+            p { +"You rolled ${num}${die}" }
 
             p {
                 +"The result was: "
@@ -92,7 +92,7 @@ private suspend fun ApplicationCall.handleDiceRoll() {
     }
 }
 
-private fun queryParameters(request: ApplicationRequest) = Pair(
-    request.queryParameters["dice"]?.toInt() ?: error("Number of dice not specified"),
-    request.queryParameters["sides"]?.toInt() ?: error("Number of sides not specified")
+private fun extractParameters(request: ApplicationRequest) = Pair(
+    request.queryParameters["num"]?.toInt() ?: error("Number of dice not specified"),
+    request.queryParameters["die"] ?: error("Die not specified")
 )
