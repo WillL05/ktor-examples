@@ -1,3 +1,5 @@
+// Set up application routing and request handling
+
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.html.respondHtmlTemplate
@@ -58,9 +60,9 @@ private suspend fun ApplicationCall.handleDiceRoll() {
     val results = diceRoll(dice, sides)
 
     respondHtmlTemplate(LayoutTemplate()) {
-        titleText { +"Dice Roller" }
+        titleText { +"Dice Results" }
         content {
-            h1 { +"Dice Roller" }
+            h1 { +"Dice Results" }
 
             p { +"You rolled ${dice}d$sides" }
 

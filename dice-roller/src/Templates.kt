@@ -1,3 +1,5 @@
+// Base template for laying out a page
+
 import io.ktor.server.html.Placeholder
 import io.ktor.server.html.Template
 import io.ktor.server.html.insert

@@ -1,3 +1,5 @@
+// Dice simulators
+
 import kotlin.random.Random
 
 val sidesOptions = setOf(4, 6, 8, 10, 12, 20)
@@ -7,7 +9,7 @@ fun dieRoll(sides: Int): Int {
     return Random.nextInt(sides) + 1
 }
 
-fun diceRoll(numDice: Int, sides: Int): List<Int> {
+fun diceRoll(numDice: Int, sides: Int): IntArray {
     require(numDice > 0) { "Invalid number of dice: $numDice" }
-    return List(numDice) { dieRoll(sides) }
+    return IntArray(numDice) { dieRoll(sides) }
 }
