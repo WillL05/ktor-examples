@@ -23,7 +23,7 @@ private suspend fun ApplicationCall.displayForm() {
 }
 
 private suspend fun ApplicationCall.handleDiceRoll() {
-    val (num, die) = extractParameters(receiveParameters())
+    val (num, die) = getDiceDetails(receiveParameters())
     val results = diceRoll(num, die)
     respondTemplate("results.peb", model = mapOf(
         "num" to num,
@@ -33,7 +33,7 @@ private suspend fun ApplicationCall.handleDiceRoll() {
     ))
 }
 
-private fun extractParameters(params: Parameters) = Pair(
+private fun getDiceDetails(params: Parameters) = Pair(
     params["num"]?.toInt() ?: error("Number of dice not specified"),
     params["die"] ?: error("Die not specified")
 )

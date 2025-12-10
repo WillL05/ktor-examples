@@ -18,7 +18,7 @@ enum class Die(val sides: Int) {
             "d10" -> Ten
             "d12" -> Twelve
             "d20" -> Twenty
-            else -> throw IllegalArgumentException("invalid die: $name")
+            else -> throw IllegalArgumentException("Invalid die: $name")
         }
     }
 

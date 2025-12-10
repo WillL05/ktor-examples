@@ -34,6 +34,7 @@ private suspend fun ApplicationCall.displayForm() {
                     value = "3"
                     required = true
                 }
+
                 label {
                     htmlFor = "dieName"
                     +"Die to roll"
@@ -49,6 +50,7 @@ private suspend fun ApplicationCall.displayForm() {
                         }
                     }
                 }
+
                 button { +"Roll Dice" }
             }
         }
@@ -56,7 +58,7 @@ private suspend fun ApplicationCall.displayForm() {
 }
 
 private suspend fun ApplicationCall.handleDiceRoll() {
-    val (num, die) = extractParameters(request)
+    val (num, die) = getDiceDetails(request)
     val results = diceRoll(num, die)
 
     respondHtmlTemplate(LayoutTemplate()) {
@@ -92,7 +94,7 @@ private suspend fun ApplicationCall.handleDiceRoll() {
     }
 }
 
-private fun extractParameters(request: ApplicationRequest) = Pair(
+private fun getDiceDetails(request: ApplicationRequest) = Pair(
     request.queryParameters["num"]?.toInt() ?: error("Number of dice not specified"),
     request.queryParameters["die"] ?: error("Die not specified")
 )
