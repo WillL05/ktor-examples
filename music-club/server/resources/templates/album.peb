@@ -1,9 +1,6 @@
 {% extends "base.peb" %}
 {% block title %}{{ title | default("?") }} - Music Club{% endblock %}
 {% block content %}
-{% if title is empty %}
-<p>No album with this ID in the database!</p>
-{% else %}
 <h2>{{ title }}</h2>
 <p>An album by <strong><a href="/artists/{{ artist.id }}">{{ artist.properName }}</a></strong></p>
 <p>Released in {{ year }}</p>
@@ -19,7 +16,6 @@
   referrerpolicy="strict-origin-when-cross-origin"
   allowfullscreen>
 </iframe>
-{% endif %}
 {% endif %}
 <nav>
   <ul>

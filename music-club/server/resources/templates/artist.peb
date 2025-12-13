@@ -1,9 +1,6 @@
 {% extends "base.peb" %}
 {% block title %}{{ name | default("?") }} - Music Club{% endblock %}
 {% block content %}
-{% if name is empty %}
-<p>No artist with this ID in the database!</p>
-{% else %}
 <h2>{{ name }}</h2>
 <p>{% if solo %}Solo artist{% else %}Band{% endif %}</p>
 {% if info %}
@@ -27,7 +24,6 @@
   {% endfor %}
   </tbody>
 </table>
-{% endif %}
 {% endif %}
 <nav>
   <ul>

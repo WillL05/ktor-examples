@@ -28,13 +28,13 @@ suspend fun ApplicationCall.artist() {
         when (val artist = result.getOrNull()) {
             null -> respond(HttpStatusCode.NotFound)
             else -> {
-                val albums = artist.albums.sortedBy { it.year }.toList()
-                respondTemplate("artist.peb", mapOf(
+                val data = mapOf(
                     "name" to artist.name,
                     "solo" to artist.isSolo,
                     "info" to (artist.info ?: ""),
-                    "albums" to albums,
-                ))
+                    "albums" to artist.albums.sortedBy { it.year }.toList(),
+                )
+                respondTemplate("artist.peb", data)
             }
         }
     }

@@ -9,7 +9,6 @@ import io.ktor.server.application.ApplicationCall
 import io.ktor.server.pebble.respondTemplate
 import io.ktor.server.response.respond
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
-import kotlin.text.toUInt
 
 suspend fun ApplicationCall.albums() {
     newSuspendedTransaction {
