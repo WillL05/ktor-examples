@@ -2,20 +2,18 @@
 
 package comp2850.music.server
 
-import comp2850.music.db.connectToDatabase
-import comp2850.music.db.connectToTestDatabase
+import comp2850.music.db.MusicDatabase
+import comp2850.music.db.TestDatabase
 import io.ktor.server.application.Application
 
 fun Application.module() {
-    connectToDatabase()
     configureTemplates()
-    configureRouting()
+    configureRouting(MusicDatabase.db)
 }
 
 fun Application.testModule() {
-    connectToTestDatabase()
     configureTemplates()
-    configureRouting()
+    configureRouting(TestDatabase.db)
 }
 
 fun main(args: Array<String>) {

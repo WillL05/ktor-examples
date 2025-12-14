@@ -9,9 +9,7 @@ import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 
 fun main() {
-    connectToDatabase()
-
-    transaction {
+    transaction(MusicDatabase.db) {
         addLogger(StdOutSqlLogger)
 
         val artistCount = Artists.selectAll().count()

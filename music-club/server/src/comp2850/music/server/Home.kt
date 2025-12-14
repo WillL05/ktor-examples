@@ -20,7 +20,8 @@ suspend fun ApplicationCall.homePage() {
 
 suspend fun ApplicationCall.searchResults() {
     newSuspendedTransaction {
-        val searchTerm = receiveParameters().get("search_term") ?: ""
+        val formParams = receiveParameters()
+        val searchTerm = formParams["search_term"] ?: ""
         val results = Album.find { Albums.title like "%$searchTerm%" }
         val data = mapOf("searchTerm" to searchTerm, "results" to results)
         respondTemplate("search.peb", data)

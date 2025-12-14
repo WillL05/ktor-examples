@@ -3,5 +3,6 @@
 package comp2850.music.db
 
 fun main() {
-    createDatabase()
+    println("Creating ${MusicDatabase.URL}...")
+    MusicDatabase.create()
 }

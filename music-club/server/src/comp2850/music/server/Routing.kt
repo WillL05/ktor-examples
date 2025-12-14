@@ -7,8 +7,9 @@ import io.ktor.server.application.Application
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
+import org.jetbrains.exposed.sql.Database
 
-fun Application.configureRouting() {
+fun Application.configureRouting(db: Database) {
     routing {
         get("/") { call.homePage() }
         post("/search") { call.searchResults() }
