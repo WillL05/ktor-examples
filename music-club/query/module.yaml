@@ -2,6 +2,6 @@ product: jvm/app
 
 dependencies:
   - ../database
-  - org.jetbrains.exposed:exposed-core:1.0.0-rc-4
-  - org.jetbrains.exposed:exposed-jdbc:1.0.0-rc-4
-  - com.h2database:h2:2.2.224
+  - $libs.exposed.core
+  - $libs.exposed.jdbc
+  - $libs.h2: runtime-only

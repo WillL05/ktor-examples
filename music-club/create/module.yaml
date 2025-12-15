@@ -2,4 +2,4 @@ product: jvm/app
 
 dependencies:
   - ../database
-  - com.h2database:h2:2.2.224
+  - $libs.h2: runtime-only
