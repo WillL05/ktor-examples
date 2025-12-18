@@ -1,0 +1,3 @@
+{% if error %}
+<p><strong>Error: {{ error }}</strong></p>
+{% endif %}
