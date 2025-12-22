@@ -15,7 +15,7 @@ a fully interactive dice rolling application.
 `dice-spa`: alternative to `dice-roller`, operating as a single-page
 application, demonstrating the use of htmx and Pebble templates.
 
-`forms-auth`: example of how to combine forms-based and session-based
+`form-auth`: example of how to combine forms-based and session-based
 authentication in a Ktor application.
 
 `music-club`: a somewhat larger application, demonstrating the use of htmx
