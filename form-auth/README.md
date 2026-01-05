@@ -27,7 +27,7 @@ page). Session details are stored client side as a cookie that expires after
 60 seconds.
 
 Note that this part of the application is crude and could be improved
-significantly---e.g., by signing the cookie, or by storing session data on
+significantly - e.g., by signing the cookie, or by storing session data on
 the server side and providing the client with a securely-generated session ID
 as the cookie. See the Ktor documentation for discussion of how to make these
 improvements.
@@ -39,7 +39,7 @@ improvements.
 * A request handler for registration form submission
 * A user login form
 * A request handler for login form submission
-* A request handdler for logging out of the application
+* A request handler for logging out of the application
 * A private page, accessible once a user has logged in and created a session
 
 See `templates/resources` for the [Pebble templates][peb] that are rendered
@@ -53,7 +53,10 @@ Build and run the server with
 
 Then visit `http://0.0.0.0:8080/` to access the demo application.
 
-Attempts to visit the private page or sign in should initially be denied.
+Attempts to visit the private page should initially be denied. It should
+also not be possible to sign in when you run the application for the very
+first time, as there are no stored credentials.
+
 You should be able to sign up with a username and possword that satisfy the
 requirements listed on the user registration page. After that point, you
 should be able to use your chosen username and password to sign in.
