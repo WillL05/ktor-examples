@@ -12,7 +12,7 @@ import io.ktor.server.routing.routing
 fun Application.configureRouting() {
     routing {
         get("/") { call.displayForm() }
-        post("/roll") { call.handleDiceRoll() }
+        post("/") { call.handleDiceRoll() }
     }
 }
 
