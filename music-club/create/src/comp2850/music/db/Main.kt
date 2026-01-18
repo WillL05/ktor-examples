@@ -7,6 +7,7 @@ import org.jetbrains.exposed.v1.core.StdOutSqlLogger
 import org.jetbrains.exposed.v1.core.dao.id.EntityID
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.insert
+import org.jetbrains.exposed.v1.jdbc.insertAndGetId
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import java.io.FileReader
 
@@ -36,11 +37,11 @@ fun addArtists(filename: String): NameToIdMap {
         val records = CSVFormat.DEFAULT.parse(reader).drop(1)
         val artists = NameToIdMap()
         for (record in records) {
-            artists[record[0]] = ArtistTable.insert {
+            artists[record[0]] = ArtistTable.insertAndGetId {
                 it[name] = record[0]
                 it[isSolo] = record[1] == "S"
                 it[info] = record[2].ifEmpty { null }
-            } get ArtistTable.id
+            }
         }
         return artists
     }
