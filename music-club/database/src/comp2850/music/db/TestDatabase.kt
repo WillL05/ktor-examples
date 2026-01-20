@@ -5,6 +5,7 @@ package comp2850.music.db
 import org.jetbrains.exposed.v1.jdbc.Database
 import org.jetbrains.exposed.v1.jdbc.SchemaUtils
 import org.jetbrains.exposed.v1.jdbc.insert
+import org.jetbrains.exposed.v1.jdbc.insertAndGetId
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 object TestDatabase {
@@ -20,30 +21,30 @@ object TestDatabase {
             SchemaUtils.drop(ArtistTable, AlbumTable)
             SchemaUtils.create(ArtistTable, AlbumTable)
 
-            val artist1 = ArtistTable.insert {
+            val band = ArtistTable.insertAndGetId {
                 it[name] = "A Band"
-            } get ArtistTable.id
+            }
 
-            val artist2 = ArtistTable.insert {
+            val soloArtist = ArtistTable.insertAndGetId {
                 it[name] = "Doe, John"
                 it[isSolo] = true
-            } get ArtistTable.id
+            }
 
             AlbumTable.insert {
                 it[title] = "An Album"
-                it[artist] = artist1
+                it[artist] = band
                 it[year] = 2025
             }
 
             AlbumTable.insert {
                 it[title] = "First Album"
-                it[artist] = artist2
+                it[artist] = soloArtist
                 it[year] = 2019
             }
 
             AlbumTable.insert {
                 it[title] = "Second Album"
-                it[artist] = artist2
+                it[artist] = soloArtist
                 it[year] = 2023
             }
         }
